@@ -24,8 +24,7 @@ This application allows the user to write, save, read, and delete notes.
 No installation is required to use the deployed page. If you want to use or develop this application locally, install dependencies by running `npm i` in your terminal in the root folder.
 
 ## Usage:
-![Gif of page functionality](./assets/preview1.gif)<br>
-![Image of web page](./assets/preview2.png)<br>
+![Image of web page](./assets/preview.png)<br>
 
 ## Tests:
 No tests are currently included.
