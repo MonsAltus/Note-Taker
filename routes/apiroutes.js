@@ -3,7 +3,6 @@
 const fs = require('fs')
 var dataBase = []
 
-
 module.exports = (app) => {
     app.get('/api/notes', (req,res) =>  {
         fs.readFile('./db/db.json', (err,data) => {
