@@ -1,14 +1,27 @@
-const db = require('../db/db.json')
+// var db = require('../db/db.json')
+// const path = require('path')
+const fs = require('fs')
+var dataBase = []
 
-
-// * `GET /api/notes` should read the `db.json` file and return all saved notes as JSON.
-// * `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into `npm` packages that could do this for you).
 
 module.exports = (app) => {
-    app.get('/api/notes', (req,res) => res.json(db))
-
-    app.post('notes', (req,res) => {
-        
+    app.get('/api/notes', (req,res) =>  {
+        fs.readFile('./db/db.json', (err,data) => {
+            if (err) throw err
+            dataBase = JSON.parse(data);
+            res.json(dataBase)
+        })
     })
 
+    app.post('/api/notes', (req,res) => {
+        dataBase.push(req.body)
+        fs.writeFile('./db/db.json', JSON.stringify(dataBase), function (err)  {
+            if (err) {
+                return console.log(err)
+            } else {
+                console.log('Note Saved')
+            }
+            })
+            res.json(req.body);
+        });
 }
